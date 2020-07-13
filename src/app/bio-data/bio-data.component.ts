@@ -2,6 +2,8 @@
 // User will be able to provide details need to be included in Biodata
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ERRORS } from '../common/errors'
 
 @Component({
   selector: 'app-bio-data',
@@ -10,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BioDataComponent implements OnInit {
 
-  constructor() { }
+  bioData : FormGroup;
+  err = ERRORS;
+
+  constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
+    this.createFormGroup();
+  }
+
+  createFormGroup(){
+    this.bioData = this.fb.group({
+      'firstName' : new FormControl('' , [Validators.required])
+    });
   }
 
 }
