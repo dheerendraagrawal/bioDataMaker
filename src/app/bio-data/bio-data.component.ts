@@ -104,6 +104,7 @@ export class BioDataComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line:typedef
   deleteRelation(relation?, index?) {
     this.relations.data.forEach((r , i) => {
       if (this.relations.data[i][relation + 'Name'] !== null){
@@ -119,7 +120,20 @@ export class BioDataComponent implements OnInit {
       }
       return false;
     });
-    this.relations.data = this.relations.data;
+    let count = 0;
+    console.log(this.relations.data);
+    Object.keys(this.relationDataStructure).forEach((key) => {
+      if (this.relations.data[this.relations.data.length - 1][key] === null){
+        count++;
+      }
+    });
+    console.log(count);
+    if (count === this.relationsColumn.length){
+      this.relations.data = this.relations.data.splice(0, (this.relations.data.length - 1));
+    }
+    else {
+      this.relations.data = this.relations.data;
+    }
   }
 
 }
