@@ -9,6 +9,10 @@
     </form>
     <form [formGroup]='familyBackground'>
         <div>
+
+        <!-- Below Mat table is dynamic -> gets created according to column name passed from service creates whole structure -->
+            <!-- For input of Brother/Sister/Bua etc. details dynamically -->
+
             <table mat-table [dataSource]='relations' width='100%'>
                 <ng-container *ngFor = 'let relation of relationsColumn'>
                     <ng-container matColumnDef= '{{relation}}' >
@@ -33,10 +37,14 @@
                 <tr mat-header-row *matHeaderRowDef='relationsColumn'></tr>
                 <tr mat-row *matRowDef='let row; columns: relationsColumn'></tr>
             </table>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------------- -->
         </div>
     </form>
     <form [formGroup]='contactDetails'>
         <div>
+
+        <!-- Mat table for celphone input -->
             <table mat-table [dataSource]='phone' width='100%'>
                 <ng-container matColumnDef='sno'>
                     <th mat-header-cell *matHeaderCellDef>S.No</th>
@@ -67,6 +75,8 @@
                 <tr mat-header-row *matHeaderRowDef='phoneColumn'></tr>
                 <tr mat-row *matRowDef='let row; columns: phoneColumn;'></tr>
             </table>
+        <!-- ----------------------------------------- -->
+
         </div>
     </form>
     
