@@ -8,5 +8,11 @@ import { Injectable } from '@angular/core';
 })
 export class BioDataService {
 
+  relationColumn: string[] = ['brother', 'sister', 'uncle', 'mama', 'mausi'];
+
   constructor() { }
+
+  getRelationColumnNames(): string[] {
+    return this.relationColumn;
+  }
 }

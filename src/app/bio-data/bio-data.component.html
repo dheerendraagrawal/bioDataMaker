@@ -1,14 +1,73 @@
 <!-- This templat will contain Form design -->
 <div>
-    <form [formGroup]='bioData'>
+    <form [formGroup]='personalDetails'>
         <div>
             <mat-form-field>
-                <input matInput type= 'text' placeholder="Enter Name" formControlName= 'firstName'>     
+                <input matInput type= 'text' placeholder="Enter Name" formControlName= 'name'>     
             </mat-form-field>  
-            <div *ngIf = "bioData.get('firstName').errors && !bioData.get('firstName').touched">
-                <mat-error *ngIf = "bioData.get('firstName').hasError('required')"> {{err.REQUIRED}} </mat-error>
-            </div>   
         </div>          
+    </form>
+    <form [formGroup]='familyBackground'>
+        <div>
+            <table mat-table [dataSource]='relations' width='100%'>
+                <ng-container *ngFor = 'let relation of relationsColumn'>
+                    <ng-container matColumnDef= '{{relation}}' >
+                        <th mat-header-cell *matHeaderCellDef>
+                            <div>{{relation | uppercase}}</div>
+                            <div>
+                                <i class="material-icons plus" (click)='addRelation(relation)' >
+                                    add
+                                </i>
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef ='let element; let i=index;'>
+                            <div *ngIf="element[relation + 'Name']!==null">
+                                <input matInput type="text" placeholder="Enter Name">
+                                <i class="material-icons plus delete" (click) = 'deleteRelation(relation,i);'>
+                                    delete 
+                                </i>
+                            </div>                            
+                        </td>
+                    </ng-container>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef='relationsColumn'></tr>
+                <tr mat-row *matRowDef='let row; columns: relationsColumn'></tr>
+            </table>
+        </div>
+    </form>
+    <form [formGroup]='contactDetails'>
+        <div>
+            <table mat-table [dataSource]='phone' width='100%'>
+                <ng-container matColumnDef='sno'>
+                    <th mat-header-cell *matHeaderCellDef>S.No</th>
+                    <td mat-cell *matCellDef='let i=index'>{{i+1}}</td>
+                </ng-container>
+                <ng-container matColumnDef='phone'>
+                    <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+                    <td mat-cell *matCellDef='let element'>
+                        <input mat-input type='text' [(ngModel)]='element.phone' [ngModelOptions]="{standalone: true}" [value]='element.phone'>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef='action'>
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef='let element'>
+                        <div>
+                            <i class="material-icons plus" >
+                                add
+                            </i>
+                        </div>
+                        <div>
+                            <i class="material-icons plus delete" >
+                                delete
+                            </i>
+                        </div>
+                    </td>
+                    
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef='phoneColumn'></tr>
+                <tr mat-row *matRowDef='let row; columns: phoneColumn;'></tr>
+            </table>
+        </div>
     </form>
     
 </div>
