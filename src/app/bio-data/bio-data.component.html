@@ -1,95 +1,113 @@
 <!-- This templat will contain Form design -->
-<div>
-    <div>
+<div class="">
+    <div class='fullForm'>
         <div class="headingBlock">
             <h2>Bio Data Form</h2>
         </div>
         <div class="subContainer">
-            <div class="personalBlock">
+            <div class="mainBlock">
                 <div class="subHeading">
                     <label>Personal Details</label>
                 </div>
                 <div class="formBody">
                     <form [formGroup]='personalDetails'>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Name" formControlName= 'name'>     
-                            </mat-form-field>  
-                        </div>   
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Father's Name" formControlName= 'fName'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <img id='displayImage' [src]='displayImageSrc' width="100px" height="150px;">
-                            <input #tempVar type="file" accept="image/png,application/pdf,image/jpeg,image/jpg"
-                                id="fileBrowse" (change)="onFileSelection($event)" placeholder="Browse"/>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput [matDatepicker]="dobDatePicker" [max]='maxDate' formControlName="dob"
-                                readonly  placeholder="Date of Birth">
-                                <mat-datepicker-toggle matSuffix [for]="dobDatePicker" >
-                                </mat-datepicker-toggle>
-                                <mat-datepicker #dobDatePicker>
-                                </mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Height in cm" formControlName= 'height'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Weight in Kg" formControlName= 'weight'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Qualification" formControlName= 'qualification'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Occupation" formControlName= 'occupation'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Gotra" formControlName= 'gotra'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Religion" formControlName= 'religion'>     
-                            </mat-form-field>  
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Name" formControlName= 'name'>     
+                                        </mat-form-field>  
+                                    </div>   
+                                    <div class="col-md-6">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Father's Name" formControlName= 'fName'>     
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="dobDatePicker" [max]='maxDate' formControlName="dob"
+                                            readonly  placeholder="Date of Birth">
+                                            <mat-datepicker-toggle matSuffix [for]="dobDatePicker" >
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #dobDatePicker>
+                                            </mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Height in cm" formControlName= 'height'>     
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Weight in Kg" formControlName= 'weight'>     
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Qualification" formControlName= 'qualification'>     
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Occupation" formControlName= 'occupation'>     
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Gotra" formControlName= 'gotra'>     
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field>
+                                            <input matInput type= 'text' placeholder="Religion" formControlName= 'religion'>     
+                                        </mat-form-field>  
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div style="height: 100%; width: 100%; text-align: center;">
+                                            <div style="margin: 10px;">
+                                                <img id='displayImage' [src]='displayImageSrc' width="60%" height="150px">
+                                            </div>                                            
+                                            <div style="margin: 10px; text-align: center;">
+                                                <input #tempVar type="file" accept="image/png,application/pdf,image/jpeg,image/jpg"
+                                                id="fileBrowse" (change)="onFileSelection($event)" placeholder="Browse"/>
+                                            </div>                                            
+                                        </div>                                        
+                                    </div>
+                                </div>                                
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="familyBlock">
+            <div class="mainBlock">
                 <div class="subHeading">
                     <label>Family Background</label>
                 </div>
                 <div class="formBody">
                     <form [formGroup]='familyBackground'>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Grand Father's Name" formControlName= 'gFather'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Father's Name" formControlName= 'fName'>     
-                            </mat-form-field>  
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput type= 'text' placeholder="Mother's Name" formControlName= 'mName'>     
-                            </mat-form-field>  
-                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <input matInput type= 'text' placeholder="Grand Father's Name" formControlName= 'gFather'>     
+                                </mat-form-field>  
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <input matInput type= 'text' placeholder="Father's Name" formControlName= 'fName' [value] = "this.personalDetails.get('fName').value" readonly>     
+                                </mat-form-field>  
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <input matInput type= 'text' placeholder="Mother's Name" formControlName= 'mName'>     
+                                </mat-form-field>  
+                            </div>
+                        </div>                      
                         <div>
             
                         <!-- Below Mat table is dynamic -> gets created according to column name passed from service creates whole structure -->
@@ -98,18 +116,18 @@
                             <table mat-table [dataSource]='relations' width='100%'>
                                 <ng-container *ngFor = 'let relation of relationsColumn'>
                                     <ng-container matColumnDef= '{{relation}}' >
-                                        <th mat-header-cell *matHeaderCellDef>
+                                        <th mat-header-cell *matHeaderCellDef class="nameTd centerAlign">
                                             <div>{{relation | uppercase}}</div>
                                             <div>
-                                                <i class="material-icons plus" (click)='addRelation(relation)' >
+                                                <i class="material-icons plus custom-add" (click)='addRelation(relation)' >
                                                     add
                                                 </i>
                                             </div>
                                         </th>
-                                        <td mat-cell *matCellDef ='let element; let i=index;' style="width: 15%;">
-                                            <div *ngIf="element[relation + this.name]!==null">
-                                                <input matInput type="text" [(ngModel)]="element[relation + this.name]" [ngModelOptions]="{standalone: true}" placeholder="{{relation | uppercase}} NAME" required>
-                                                <i class="material-icons plus delete" (click) = 'deleteRelation(relation,i);'>
+                                        <td mat-cell *matCellDef ='let element; let i=index;' class="nameTd">
+                                            <div *ngIf="element[relation + this.name]!==null" class="cellElement centerAlign">
+                                                <input class="nameField" matInput type="text" [(ngModel)]="element[relation + this.name]" [ngModelOptions]="{standalone: true}" placeholder="{{relation | uppercase}} NAME" required>
+                                                <i class="material-icons plus delete custom-delete iconField centerAlign" (click) = 'deleteRelation(relation,i);'>
                                                     delete 
                                                 </i>
                                             </div>                            
@@ -117,7 +135,7 @@
                                     </ng-container>
                                 </ng-container>
                                 <tr mat-header-row *matHeaderRowDef='relationsColumn'></tr>
-                                <tr mat-row *matRowDef='let row; columns: relationsColumn'></tr>
+                                <tr class="rowHeight" mat-row *matRowDef='let row; columns: relationsColumn'></tr>
                             </table>
             
                         <!-- ---------------------------------------------------------------------------------------------------------------------- -->
@@ -125,7 +143,7 @@
                     </form>
                 </div>
             </div>
-            <div class="contactBlock">
+            <div class="mainBlock">
                 <div class="subHeading">
                     <label>Contact Information</label>
                 </div>
@@ -136,25 +154,25 @@
                         <!-- Mat table for celphone input -->
                             <table mat-table [dataSource]='phone' width='100%'>
                                 <ng-container matColumnDef='sno'>
-                                    <th mat-header-cell *matHeaderCellDef>{{'S.No' | uppercase}}</th>
-                                    <td mat-cell *matCellDef='let i=index'>{{i+1}}</td>
+                                    <th mat-header-cell *matHeaderCellDef class="centerAlign">{{'S.No' | uppercase}}</th>
+                                    <td mat-cell *matCellDef='let i=index' class="phoneTd centerAlign">{{i+1}}</td>
                                 </ng-container>
                                 <ng-container matColumnDef='phone'>
-                                    <th mat-header-cell *matHeaderCellDef>{{'Phone Number' | uppercase}}</th>
-                                    <td mat-cell *matCellDef='let element'>
+                                    <th mat-header-cell *matHeaderCellDef class="centerAlign">{{'Phone Number' | uppercase}}</th>
+                                    <td mat-cell *matCellDef='let element' class="phoneTd centerAlign">
                                         <input matInput type='text' [(ngModel)]='element.number' [ngModelOptions]="{standalone: true}" [value]='element.number' placeholder='Number' required>
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef='action'>
-                                    <th mat-header-cell *matHeaderCellDef>{{'Action' | uppercase}}</th>
-                                    <td mat-cell *matCellDef='let i=index;'>
-                                        <div>
-                                            <i class="material-icons plus" (click)='addPhone(i)'>
+                                    <th mat-header-cell *matHeaderCellDef class="centerAlign">{{'Action' | uppercase}}</th>
+                                    <td mat-cell *matCellDef='let i=index;' class="phoneTd centerAlign">
+                                        <div class="inline-block">
+                                            <i class="material-icons plus custom-add centerAlign" (click)='addPhone(i)'>
                                                 add
                                             </i>
                                         </div>
-                                        <div *ngIf='this.phone.data.length > 1'>
-                                            <i class="material-icons plus delete" (click)='deletePhone(i)' >
+                                        <div *ngIf='this.phone.data.length > 1' class="inline-block">
+                                            <i class="material-icons plus delete custom-delete centerAlign" (click)='deletePhone(i)' >
                                                 delete
                                             </i>
                                         </div>
@@ -162,12 +180,12 @@
                                     
                                 </ng-container>
                                 <tr mat-header-row *matHeaderRowDef='phoneColumn'></tr>
-                                <tr mat-row *matRowDef='let row; columns: phoneColumn;'></tr>
+                                <tr class="rowHeight" mat-row *matRowDef='let row; columns: phoneColumn;'></tr>
                             </table>
                         <!-- ----------------------------------------- -->
             
                         </div>
-                        <div>
+                        <div style="margin-top: 20px;">
                             <mat-form-field>
                                 <textarea matInput type= 'text' placeholder="Address" formControlName= 'address'></textarea>    
                             </mat-form-field>  
@@ -176,7 +194,7 @@
                 </div>
             </div>
             <div class="buttonBlock">
-                <button (click)='createBioData($event)'>Create Bio data</button>
+                <button class="customButton" (click)='createBioData($event)'><span>Create Bio data</span></button>
             </div>    
         </div> 
     </div>
