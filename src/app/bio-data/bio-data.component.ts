@@ -56,25 +56,25 @@ export class BioDataComponent implements OnInit {
       personalDetails: this.fb.group({
         name: new FormControl('' , [Validators.required]),
         fName: new FormControl('', [Validators.required]),
-        dob: new FormControl(),
-        height: new FormControl(),
-        weight: new FormControl(),
-        qualification: new FormControl(),
-        occupation: new FormControl(),
-        hobies: new FormControl(),
-        gotra: new FormControl(),
-        religion: new FormControl(),
+        dob: new FormControl(null , [Validators.required]),
+        height: new FormControl(0 , [Validators.required]),
+        weight: new FormControl(0 , [Validators.required]),
+        qualification: new FormControl('', [Validators.required]),
+        occupation: new FormControl('', [Validators.required]),
+        hobies: new FormControl('', [Validators.required]),
+        gotra: new FormControl('', [Validators.required]),
+        religion: new FormControl('', [Validators.required]),
         photo: new FormControl()
       }),
       familyBackground: this.fb.group({
-        gFather: new FormControl(),
-        fName: new FormControl(),
-        mName: new FormControl(),
+        gFather: new FormControl('', [Validators.required]),
+        fName: new FormControl('', [Validators.required]),
+        mName: new FormControl('', [Validators.required]),
         relations: new FormControl()
       }),
       contactDetails: this.fb.group({
         phone: new FormControl(),
-        address: new FormControl()
+        address: new FormControl('', [Validators.required])
       })
     });
 
