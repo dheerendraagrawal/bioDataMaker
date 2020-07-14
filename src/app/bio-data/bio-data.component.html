@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <mat-form-field>
-                                <input matInput [matDatepicker]="dobDatePicker" formControlName="dob"
+                                <input matInput [matDatepicker]="dobDatePicker" [max]='maxDate' formControlName="dob"
                                 readonly  placeholder="Date of Birth">
                                 <mat-datepicker-toggle matSuffix [for]="dobDatePicker" >
                                 </mat-datepicker-toggle>
@@ -136,17 +136,17 @@
                         <!-- Mat table for celphone input -->
                             <table mat-table [dataSource]='phone' width='100%'>
                                 <ng-container matColumnDef='sno'>
-                                    <th mat-header-cell *matHeaderCellDef>S.No</th>
+                                    <th mat-header-cell *matHeaderCellDef>{{'S.No' | uppercase}}</th>
                                     <td mat-cell *matCellDef='let i=index'>{{i+1}}</td>
                                 </ng-container>
                                 <ng-container matColumnDef='phone'>
-                                    <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+                                    <th mat-header-cell *matHeaderCellDef>{{'Phone Number' | uppercase}}</th>
                                     <td mat-cell *matCellDef='let element'>
-                                        <input mat-input type='text' [(ngModel)]='element.phone' [ngModelOptions]="{standalone: true}" [value]='element.phone'>
+                                        <input matInput type='text' [(ngModel)]='element.number' [ngModelOptions]="{standalone: true}" [value]='element.number' placeholder='Number' required>
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef='action'>
-                                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                                    <th mat-header-cell *matHeaderCellDef>{{'Action' | uppercase}}</th>
                                     <td mat-cell *matCellDef='let i=index;'>
                                         <div>
                                             <i class="material-icons plus" (click)='addPhone(i)'>

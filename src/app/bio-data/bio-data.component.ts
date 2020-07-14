@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ERRORS } from '../common/errors';
 import { MatTableDataSource } from '@angular/material/table';
 import { BioDataService } from '../services/bio-data.service';
-import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bio-data',
@@ -31,6 +30,8 @@ export class BioDataComponent implements OnInit {
   phoneColumn: string[] = ['sno', 'phone', 'action'];
   err = ERRORS;
 
+  maxDate: Date;
+  marrigeAge = 15;
   displayImageSrc = '#';
 
   // below variable is for dynamic naming the key names for relation list
@@ -42,9 +43,11 @@ export class BioDataComponent implements OnInit {
               private el: ElementRef) { }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
+    this.maxDate = new Date((this.maxDate.getFullYear() - this.marrigeAge), this.maxDate.getMonth(), this.maxDate.getDate());
     this.createFormGroup();
     this.relationsColumn = this.bioDataService.getRelationColumnNames();
-    this.createMatDataSource();
+    this.createMatDataSourceStructure();
   }
 
   // tslint:disable-next-line:typedef
@@ -81,13 +84,10 @@ export class BioDataComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  createMatDataSource() {
+  createMatDataSourceStructure() {
     this.relationsColumn.forEach((name) => {
       this.relationDataStructure[name + this.name] = null;
     });
-    const temp = Object.assign({} , this.relationDataStructure);
-    this.relations.data.push(temp);
-    this.relations.data = this.relations.data;
   }
 
   // tslint:disable-next-line:typedef
@@ -173,7 +173,7 @@ export class BioDataComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   createBioData($event) {
-    if (this.bioData.valid){
+    if (this.bioData.valid && this.personalDetails.valid && this.familyBackground.valid && this.contactDetails.valid){
       this.familyBackground.get('relations').patchValue(this.relations.data);
       this.contactDetails.get('phone').patchValue(this.phone.data);
       this.bioDataService.setBioData(this.bioData.getRawValue());
