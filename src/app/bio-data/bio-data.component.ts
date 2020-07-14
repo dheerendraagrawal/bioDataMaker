@@ -1,7 +1,7 @@
 // This component is for form inputs
 // User will be able to provide details need to be included in Biodata
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ERRORS } from '../common/errors';
 import { MatTableDataSource } from '@angular/material/table';
@@ -31,8 +31,15 @@ export class BioDataComponent implements OnInit {
   phoneColumn: string[] = ['sno', 'phone', 'action'];
   err = ERRORS;
 
+  displayImageSrc = '#';
+
+  // below variable is for dynamic naming the key names for relation list
+  // tslint:disable-next-line:no-inferrable-types
+  name: string = 'Name';
+
   constructor(private fb: FormBuilder,
-              private bioDataService: BioDataService) { }
+              private bioDataService: BioDataService,
+              private el: ElementRef) { }
 
   ngOnInit(): void {
     this.createFormGroup();
@@ -76,7 +83,7 @@ export class BioDataComponent implements OnInit {
   // tslint:disable-next-line:typedef
   createMatDataSource() {
     this.relationsColumn.forEach((name) => {
-      this.relationDataStructure[name + 'Name'] = null;
+      this.relationDataStructure[name + name] = null;
     });
     const temp = Object.assign({} , this.relationDataStructure);
     this.relations.data.push(temp);
@@ -87,18 +94,18 @@ export class BioDataComponent implements OnInit {
   addRelation(relation?) {
     let i = null;
     this.relations.data.every((r , index) => {
-      if (r[relation + 'Name'] === null) {
+      if (r[relation + name] === null) {
         i = index;
         return false;
       }
       return true;
     });
     if (i !== null) {
-      this.relations.data[i][relation + 'Name'] = '';
+      this.relations.data[i][relation + name] = '';
     }
     else{
       const temp =  Object.assign({} , this.relationDataStructure);
-      temp[relation + 'Name'] = '';
+      temp[relation + name] = '';
       this.relations.data.push(temp);
       this.relations.data = this.relations.data;
     }
@@ -107,13 +114,13 @@ export class BioDataComponent implements OnInit {
   // tslint:disable-next-line:typedef
   deleteRelation(relation?, index?) {
     this.relations.data.forEach((r , i) => {
-      if (this.relations.data[i][relation + 'Name'] !== null){
+      if (this.relations.data[i][relation + name] !== null){
         if (i >= index) {
           if (i < (this.relations.data.length - 1)){
-            this.relations.data[i][relation + 'Name'] = this.relations.data[i + 1][relation + 'Name'];
+            this.relations.data[i][relation + name] = this.relations.data[i + 1][relation + name];
           }
           else {
-            this.relations.data[i][relation + 'Name'] = null;
+            this.relations.data[i][relation + name] = null;
           }
         }
         return true;
@@ -121,19 +128,45 @@ export class BioDataComponent implements OnInit {
       return false;
     });
     let count = 0;
-    console.log(this.relations.data);
     Object.keys(this.relationDataStructure).forEach((key) => {
       if (this.relations.data[this.relations.data.length - 1][key] === null){
         count++;
       }
     });
-    console.log(count);
     if (count === this.relationsColumn.length){
       this.relations.data = this.relations.data.splice(0, (this.relations.data.length - 1));
     }
     else {
       this.relations.data = this.relations.data;
     }
+  }
+
+  // tslint:disable-next-line:typedef
+  openFileSelector() {
+      this.el.nativeElement.querySelector('#fileBrowse').click();
+  }
+
+  // tslint:disable-next-line:typedef
+  onFileSelection(fileSelected) {
+      let valid = true;
+      const fileExtension = fileSelected.target.files[0].name.split('.').pop().toLowerCase();
+      const fileSizeInKb = fileSelected.target.files[0].size / Math.pow(1024, 1);
+      if (fileSelected.target.files[0].size > 2000000) {
+          valid = false;
+          alert('File Size cannot be more than 2 MB');
+      }
+      if (valid) {
+          // tslint:disable-next-line:no-string-literal
+          this.personalDetails.controls['photo'].setValue(fileSelected.target.files[0]);
+          // tslint:disable-next-line:no-string-literal
+          this.personalDetails.controls['photo'].updateValueAndValidity();
+          this.displayImageSrc = fileSelected.target.files[0].path;
+      }
+  }
+
+  // tslint:disable-next-line:typedef
+  createBioData($event) {
+    this.bioDataService.setBioData(this.bioData.getRawValue());
   }
 
 }
