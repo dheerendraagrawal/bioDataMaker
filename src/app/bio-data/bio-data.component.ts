@@ -161,13 +161,19 @@ export class BioDataComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onFileSelection(fileSelected) {
-      console.log(fileSelected);
       if (fileSelected.target.files && fileSelected.target.files[0]) {
         // tslint:disable-next-line:no-string-literal
         this.personalDetails.controls['photo'].setValue(fileSelected.target.files[0]);
         // tslint:disable-next-line:no-string-literal
         this.personalDetails.controls['photo'].updateValueAndValidity();
         this.displayImageSrc = fileSelected.target.value;
+        const reader = new FileReader();
+        reader.onload = (r) => {
+          this.displayImageSrc = r.target.result.toString();
+        };
+        reader.readAsDataURL(fileSelected.target.files[0]);
+        this.personalDetails.get('photo').patchValue(fileSelected);
+        console.log( this.personalDetails.get('photo').value);
       }
   }
 
