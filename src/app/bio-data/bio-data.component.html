@@ -23,9 +23,8 @@
                         </div>
                         <div>
                             <img id='displayImage' [src]='displayImageSrc' width="100px" height="150px;">
-                            <button type="button" (click)="openFileSelector()">Browse Files</button>
-                            <input type="file" onclick="this.value = null;" accept="image/png,application/pdf,image/jpeg,image/jpg"
-                                id="fileBrowse" (change)="onFileSelection($event)" />
+                            <input #tempVar type="file" accept="image/png,application/pdf,image/jpeg,image/jpg"
+                                id="fileBrowse" (change)="onFileSelection($event)" placeholder="Browse"/>
                         </div>
                         <div>
                             <mat-form-field>
@@ -39,12 +38,12 @@
                         </div>
                         <div>
                             <mat-form-field>
-                                <input matInput type= 'text' placeholder="Height" formControlName= 'height'>     
+                                <input matInput type= 'text' placeholder="Height in cm" formControlName= 'height'>     
                             </mat-form-field>  
                         </div>
                         <div>
                             <mat-form-field>
-                                <input matInput type= 'text' placeholder="Weight" formControlName= 'weight'>     
+                                <input matInput type= 'text' placeholder="Weight in Kg" formControlName= 'weight'>     
                             </mat-form-field>  
                         </div>
                         <div>
@@ -108,8 +107,8 @@
                                             </div>
                                         </th>
                                         <td mat-cell *matCellDef ='let element; let i=index;' style="width: 15%;">
-                                            <div *ngIf="element[relation + 'Name']!==null">
-                                                <input matInput type="text" [(ngModel)]="element[relation + 'Name']" [ngModelOptions]="{standalone: true}" placeholder="Enter Name">
+                                            <div *ngIf="element[relation + this.name]!==null">
+                                                <input matInput type="text" [(ngModel)]="element[relation + this.name]" [ngModelOptions]="{standalone: true}" placeholder="{{relation | uppercase}} NAME" required>
                                                 <i class="material-icons plus delete" (click) = 'deleteRelation(relation,i);'>
                                                     delete 
                                                 </i>
@@ -148,14 +147,14 @@
                                 </ng-container>
                                 <ng-container matColumnDef='action'>
                                     <th mat-header-cell *matHeaderCellDef>Action</th>
-                                    <td mat-cell *matCellDef='let element'>
+                                    <td mat-cell *matCellDef='let i=index;'>
                                         <div>
-                                            <i class="material-icons plus" >
+                                            <i class="material-icons plus" (click)='addPhone(i)'>
                                                 add
                                             </i>
                                         </div>
-                                        <div>
-                                            <i class="material-icons plus delete" >
+                                        <div *ngIf='this.phone.data.length > 1'>
+                                            <i class="material-icons plus delete" (click)='deletePhone(i)' >
                                                 delete
                                             </i>
                                         </div>

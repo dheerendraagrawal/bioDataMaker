@@ -67,10 +67,10 @@ export class BioDataComponent implements OnInit {
         gFather: new FormControl(),
         fName: new FormControl(),
         mName: new FormControl(),
-        relations: new FormControl(this.relations.data)
+        relations: new FormControl()
       }),
       contactDetails: this.fb.group({
-        phone: new FormControl(this.phone.data),
+        phone: new FormControl(),
         address: new FormControl()
       })
     });
@@ -113,7 +113,6 @@ export class BioDataComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   deleteRelation(relation?, index?) {
-    console.log(this.relations.data);
     this.relations.data.forEach((r , i) => {
       if (this.relations.data[i][relation + this.name] !== null){
         if (i >= index) {
@@ -140,35 +139,48 @@ export class BioDataComponent implements OnInit {
     else {
       this.relations.data = this.relations.data;
     }
-    console.log(this.relations.data);
   }
 
   // tslint:disable-next-line:typedef
-  openFileSelector() {
-      this.el.nativeElement.querySelector('#fileBrowse').click();
+  addPhone(index) {
+    this.phone.data.push({
+      number: ''
+    });
+    this.phone.data = this.phone.data;
+  }
+
+  // tslint:disable-next-line:typedef
+  deletePhone(index){
+    this.phone.data = this.phone.data.filter((p , i) => {
+      if (i === index){
+        return false;
+      }
+      return true;
+    });
   }
 
   // tslint:disable-next-line:typedef
   onFileSelection(fileSelected) {
-      let valid = true;
-      const fileExtension = fileSelected.target.files[0].name.split('.').pop().toLowerCase();
-      const fileSizeInKb = fileSelected.target.files[0].size / Math.pow(1024, 1);
-      if (fileSelected.target.files[0].size > 2000000) {
-          valid = false;
-          alert('File Size cannot be more than 2 MB');
-      }
-      if (valid) {
-          // tslint:disable-next-line:no-string-literal
-          this.personalDetails.controls['photo'].setValue(fileSelected.target.files[0]);
-          // tslint:disable-next-line:no-string-literal
-          this.personalDetails.controls['photo'].updateValueAndValidity();
-          this.displayImageSrc = fileSelected.target.files[0].path;
+      console.log(fileSelected);
+      if (fileSelected.target.files && fileSelected.target.files[0]) {
+        // tslint:disable-next-line:no-string-literal
+        this.personalDetails.controls['photo'].setValue(fileSelected.target.files[0]);
+        // tslint:disable-next-line:no-string-literal
+        this.personalDetails.controls['photo'].updateValueAndValidity();
+        this.displayImageSrc = fileSelected.target.value;
       }
   }
 
   // tslint:disable-next-line:typedef
   createBioData($event) {
-    this.bioDataService.setBioData(this.bioData.getRawValue());
+    if (this.bioData.valid){
+      this.familyBackground.get('relations').patchValue(this.relations.data);
+      this.contactDetails.get('phone').patchValue(this.phone.data);
+      this.bioDataService.setBioData(this.bioData.getRawValue());
+    }
+    else {
+      alert('Please Fill all Details');
+    }
   }
 
 }
