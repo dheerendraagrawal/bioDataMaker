@@ -173,7 +173,6 @@ export class BioDataComponent implements OnInit {
         };
         reader.readAsDataURL(fileSelected.target.files[0]);
         this.personalDetails.get('photo').patchValue(fileSelected);
-        console.log( this.personalDetails.get('photo').value);
       }
   }
 
@@ -187,6 +186,13 @@ export class BioDataComponent implements OnInit {
     else {
       alert('Please Fill all Details');
     }
+  }
+
+  // tslint:disable-next-line:typedef
+  setFName($event){
+    const h = event.target as HTMLInputElement;
+    console.log(h.value);
+    this.familyBackground.get('fName').patchValue(h.value);
   }
 
 }

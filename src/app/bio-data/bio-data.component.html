@@ -21,7 +21,7 @@
                                     </div>   
                                     <div class="col-md-6">
                                         <mat-form-field>
-                                            <input matInput type= 'text' placeholder="Father's Name" formControlName= 'fName'>     
+                                            <input matInput type= 'text' placeholder="Father's Name" (change)='setFName($event)' formControlName= 'fName'>     
                                         </mat-form-field>  
                                     </div>
                                     <div class="col-md-4">
@@ -99,7 +99,7 @@
                             </div>
                             <div class="col-md-4">
                                 <mat-form-field>
-                                    <input matInput type= 'text' placeholder="Father's Name" formControlName= 'fName' [value] = "this.personalDetails.get('fName').value" readonly>     
+                                    <input matInput type= 'text' placeholder="Father's Name"  formControlName= 'fName' [value] = "this.personalDetails.get('fName').value" readonly>     
                                 </mat-form-field>  
                             </div>
                             <div class="col-md-4">
