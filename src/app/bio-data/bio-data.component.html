@@ -108,8 +108,8 @@
                                             </div>
                                         </th>
                                         <td mat-cell *matCellDef ='let element; let i=index;' style="width: 15%;">
-                                            <div *ngIf="element[relation + name]!==null">
-                                                <input matInput type="text" [(ngModel)]="element[relation + name]" [ngModelOptions]="{standalone: true}" placeholder="Enter Name">
+                                            <div *ngIf="element[relation + 'Name']!==null">
+                                                <input matInput type="text" [(ngModel)]="element[relation + 'Name']" [ngModelOptions]="{standalone: true}" placeholder="Enter Name">
                                                 <i class="material-icons plus delete" (click) = 'deleteRelation(relation,i);'>
                                                     delete 
                                                 </i>

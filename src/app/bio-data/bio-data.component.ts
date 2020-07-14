@@ -24,7 +24,7 @@ export class BioDataComponent implements OnInit {
   relations = new MatTableDataSource([]);
 
   phone = new MatTableDataSource([{
-    number : '23'
+    number : ''
   }]);
 
   relationsColumn: string[];
@@ -83,7 +83,7 @@ export class BioDataComponent implements OnInit {
   // tslint:disable-next-line:typedef
   createMatDataSource() {
     this.relationsColumn.forEach((name) => {
-      this.relationDataStructure[name + name] = null;
+      this.relationDataStructure[name + this.name] = null;
     });
     const temp = Object.assign({} , this.relationDataStructure);
     this.relations.data.push(temp);
@@ -94,18 +94,18 @@ export class BioDataComponent implements OnInit {
   addRelation(relation?) {
     let i = null;
     this.relations.data.every((r , index) => {
-      if (r[relation + name] === null) {
+      if (r[relation + this.name] === null) {
         i = index;
         return false;
       }
       return true;
     });
     if (i !== null) {
-      this.relations.data[i][relation + name] = '';
+      this.relations.data[i][relation + this.name] = '';
     }
     else{
       const temp =  Object.assign({} , this.relationDataStructure);
-      temp[relation + name] = '';
+      temp[relation + this.name] = '';
       this.relations.data.push(temp);
       this.relations.data = this.relations.data;
     }
@@ -113,14 +113,15 @@ export class BioDataComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   deleteRelation(relation?, index?) {
+    console.log(this.relations.data);
     this.relations.data.forEach((r , i) => {
-      if (this.relations.data[i][relation + name] !== null){
+      if (this.relations.data[i][relation + this.name] !== null){
         if (i >= index) {
           if (i < (this.relations.data.length - 1)){
-            this.relations.data[i][relation + name] = this.relations.data[i + 1][relation + name];
+            this.relations.data[i][relation + this.name] = this.relations.data[i + 1][relation + this.name];
           }
           else {
-            this.relations.data[i][relation + name] = null;
+            this.relations.data[i][relation + this.name] = null;
           }
         }
         return true;
@@ -139,6 +140,7 @@ export class BioDataComponent implements OnInit {
     else {
       this.relations.data = this.relations.data;
     }
+    console.log(this.relations.data);
   }
 
   // tslint:disable-next-line:typedef
