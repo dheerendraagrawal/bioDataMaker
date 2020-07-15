@@ -235,6 +235,15 @@ export class BioDataComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
+  resetForm($event) {
+    this.bioData.reset();
+    this.phone = new MatTableDataSource([{
+      number: ''
+    }]);
+    this.relations = new MatTableDataSource();
+  }
+
+  // tslint:disable-next-line:typedef
   setFatherName($event){
     const h = event.target as HTMLInputElement;
     console.log(h.value);

@@ -1,9 +1,11 @@
 .mainFull{
     width: 100%;
     height: 100%;
+    background-size: cover;
 }
 
 .card {
+    padding: 5px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.7);
     transition: 0.3s;
     width: 100%;
@@ -16,10 +18,19 @@
 .mainBody{
     width: 100%;
     padding: 10px 50px;
+    z-index: 0;
+    background-image:  linear-gradient(to top left, rgb(65, 104, 104) , rgb(213, 217, 218));
+    background-size: cover;
 }
 
 .mainNav{
-
+  padding: 10px;
+  margin: 0 4px 4px 4px;
+  background-color: rgba(245, 245, 245, 0.8);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.7);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .nav{
