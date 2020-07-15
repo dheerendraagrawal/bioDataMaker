@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BioDataComponent } from './bio-data/bio-data.component';
 import { BioDataViewComponent } from './bio-data-view/bio-data-view.component';
 import { AboutComponent } from './about/about/about.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-found.component';
 
 const routes: Routes = [{
     path: '',
@@ -13,6 +14,9 @@ const routes: Routes = [{
   }, {
     path: 'old/:flag',
     component: BioDataViewComponent
+  }, {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

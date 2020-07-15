@@ -12,13 +12,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about/about.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BioDataComponent,
     BioDataViewComponent,
-    AboutComponent
+    AboutComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

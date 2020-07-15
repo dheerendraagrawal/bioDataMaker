@@ -17,3 +17,36 @@
     width: 100%;
     padding: 10px 50px;
 }
+
+.mainNav{
+
+}
+
+.nav{
+  list-style: none;
+}
+
+.navList{
+  margin: 5px 10px;
+}
+
+.navLink{
+  display: inline-block;
+  padding: 10px 20px; 
+  background-color: darkslategray;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.7);
+  transition: 0.3s;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.navList:hover{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+.navLinkActive{
+  background-color: whitesmoke;
+  color: darkslategray;
+}
