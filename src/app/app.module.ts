@@ -11,12 +11,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutComponent } from './about/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BioDataComponent,
-    BioDataViewComponent
+    BioDataViewComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

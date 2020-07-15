@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // tslint:disable-next-line:no-inferrable-types
+  newFlag = 1;
+  // tslint:disable-next-line:no-inferrable-types
+  oldFlag = 1;
 }

@@ -18,9 +18,15 @@ export class BioDataService {
     return this.relationColumn;
   }
 
+  // tslint:disable-next-line:typedef
   setBioData(biodata) {
     this.biodata = biodata;
     console.log('biodata values from service');
     console.log(this.biodata);
+  }
+
+  // tslint:disable-next-line:typedef
+  getBioData() {
+    return this.biodata;
   }
 }
