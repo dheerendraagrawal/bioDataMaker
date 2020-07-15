@@ -137,7 +137,7 @@ td {
     color: whitesmoke;
     border-radius: 2px;
     margin: 0px 20px;
-    transition: 0.3;
+    transition: 0.5;
 }
 
 .resetButton:hover{

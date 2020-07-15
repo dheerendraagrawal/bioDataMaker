@@ -72,27 +72,27 @@ export class BioDataComponent implements OnInit {
     if ( this.action === 'edit' ) {
       this.bioData = this.fb.group({
         personalDetails: this.fb.group({
-          name: new FormControl(this.oldValue.personalDetails.name , [Validators.required]),
-          fName: new FormControl(this.oldValue.personalDetails.fName, [Validators.required]),
-          dob: new FormControl(this.oldValue.personalDetails.dob , [Validators.required]),
-          height: new FormControl(this.oldValue.personalDetails.height , [Validators.required]),
-          weight: new FormControl(this.oldValue.personalDetails.weight , [Validators.required]),
-          qualification: new FormControl(this.oldValue.personalDetails.qualification, [Validators.required]),
-          occupation: new FormControl(this.oldValue.personalDetails.occupation, [Validators.required]),
-          hobies: new FormControl(this.oldValue.personalDetails.hobbies, [Validators.required]),
-          gotra: new FormControl(this.oldValue.personalDetails.gotra, [Validators.required]),
-          religion: new FormControl(this.oldValue.personalDetails.religion, [Validators.required]),
+          name: new FormControl(this.oldValue.personalDetails.name , []),
+          fName: new FormControl(this.oldValue.personalDetails.fName, []),
+          dob: new FormControl(this.oldValue.personalDetails.dob , []),
+          height: new FormControl(this.oldValue.personalDetails.height , []),
+          weight: new FormControl(this.oldValue.personalDetails.weight , []),
+          qualification: new FormControl(this.oldValue.personalDetails.qualification, []),
+          occupation: new FormControl(this.oldValue.personalDetails.occupation, []),
+          hobies: new FormControl(this.oldValue.personalDetails.hobbies, []),
+          gotra: new FormControl(this.oldValue.personalDetails.gotra, []),
+          religion: new FormControl(this.oldValue.personalDetails.religion, []),
           photo: new FormControl()
         }),
         familyBackground: this.fb.group({
-          gFather: new FormControl(this.oldValue.familyBackground.gFather, [Validators.required]),
-          fName: new FormControl(this.oldValue.familyBackground.fName, [Validators.required]),
-          mName: new FormControl(this.oldValue.familyBackground.mName, [Validators.required]),
+          gFather: new FormControl(this.oldValue.familyBackground.gFather, []),
+          fName: new FormControl(this.oldValue.familyBackground.fName, []),
+          mName: new FormControl(this.oldValue.familyBackground.mName, []),
           relations: new FormControl()
         }),
         contactDetails: this.fb.group({
           phone: new FormControl(),
-          address: new FormControl(this.oldValue.contactDetails.address, [Validators.required])
+          address: new FormControl(this.oldValue.contactDetails.address, [])
         })
       });
       this.phone = new MatTableDataSource(this.oldValue.contactDetails.phone);
@@ -101,27 +101,27 @@ export class BioDataComponent implements OnInit {
     else{
       this.bioData = this.fb.group({
         personalDetails: this.fb.group({
-          name: new FormControl('' , [Validators.required]),
-          fName: new FormControl('', [Validators.required]),
-          dob: new FormControl(null , [Validators.required]),
-          height: new FormControl(0 , [Validators.required]),
-          weight: new FormControl(0 , [Validators.required]),
-          qualification: new FormControl('', [Validators.required]),
-          occupation: new FormControl('', [Validators.required]),
-          hobies: new FormControl('', [Validators.required]),
-          gotra: new FormControl('', [Validators.required]),
-          religion: new FormControl('', [Validators.required]),
+          name: new FormControl('' , []),
+          fName: new FormControl('', []),
+          dob: new FormControl(null , []),
+          height: new FormControl('' , []),
+          weight: new FormControl('' , []),
+          qualification: new FormControl('', []),
+          occupation: new FormControl('', []),
+          hobies: new FormControl('', []),
+          gotra: new FormControl('', []),
+          religion: new FormControl('', []),
           photo: new FormControl()
         }),
         familyBackground: this.fb.group({
-          gFather: new FormControl('', [Validators.required]),
-          fName: new FormControl('', [Validators.required]),
-          mName: new FormControl('', [Validators.required]),
+          gFather: new FormControl('', []),
+          fName: new FormControl('', []),
+          mName: new FormControl('', []),
           relations: new FormControl()
         }),
         contactDetails: this.fb.group({
           phone: new FormControl(),
-          address: new FormControl('', [Validators.required])
+          address: new FormControl('', [])
         })
       });
     }
